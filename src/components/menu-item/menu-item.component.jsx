@@ -30,3 +30,5 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
 );
 
 export default withRouter(MenuItem);
+
+// withRouter(menuItem) is a higher order component.
