@@ -3,8 +3,9 @@ import {Link} from 'react-router-dom';
 
 
 import { ReactComponent as Logo } from '../../assets/logo/crown.svg';
+// note! its a special syntax, and ReactComponent tells CRA that you want a React component to render an SVG, rather than its filename.
+// you can find more here: https://facebook.github.io/create-react-app/docs/adding-images-fonts-and-files
 
-// note! 
 import "./header.styles.scss";
 
 const Header = () => (
