@@ -12,6 +12,37 @@ const config = {
   measurementId: "G-XKK73F2060",
 };
 
+// createUserProfileDocument is an async function that will allow us to store user login/auth data into firestore.
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  // note, its users/${userAuth.uid}, not ${userAuth.id} !
+
+  const snapShot = await userRef.get();
+
+  console.log(snapShot);
+
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log("error creating user, ", error.message);
+    }
+  }
+  // the try block will create a new user from userAuth - and get back userRef.
+
+  return userRef;
+};
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
