@@ -21,7 +21,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   const snapShot = await userRef.get();
 
-  console.log(snapShot);
+//   console.log(snapShot);
 
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
@@ -35,7 +35,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         ...additionalData,
       });
     } catch (error) {
-      console.log("error creating user, ", error.message);
+      console.error("error creating user, ", error.message);
     }
   }
   // the try block will create a new user from userAuth - and get back userRef.
